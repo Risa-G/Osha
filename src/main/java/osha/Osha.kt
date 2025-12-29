@@ -1,5 +1,7 @@
 package osha
 
+import com.gtnewhorizon.gtnhlib.config.ConfigException
+import com.gtnewhorizon.gtnhlib.config.ConfigurationManager
 import cpw.mods.fml.common.Mod
 import cpw.mods.fml.common.event.FMLInitializationEvent
 import cpw.mods.fml.common.event.FMLPostInitializationEvent
@@ -15,6 +17,14 @@ import org.apache.logging.log4j.Logger
 )
 class Osha {
     companion object {
+        init {
+            try {
+                ConfigurationManager.registerConfig(ConfigureOsha::class.java)
+            } catch (e: ConfigException) {
+                throw e
+            }
+        }
+
         const val version = "0.1.0"
         const val modid = "osha"
         const val name = "Osha"
@@ -36,5 +46,6 @@ class Osha {
     @Mod.EventHandler
     fun postInit(event: FMLPostInitializationEvent) {
         log().info("Osha post initializing")
+        RegisterItems.registerRecipes()
     }
 }

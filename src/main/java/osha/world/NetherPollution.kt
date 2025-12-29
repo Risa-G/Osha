@@ -12,11 +12,8 @@ object NetherPollution {
     fun polluteNetherChunk(event: PopulateChunkEvent.Populate) {
         val isHell = event.world.provider.isHellWorld
 
-        if (isHell) {
-            val x = event.chunkX
-            val z = event.chunkZ
-            val chunk = event.world.getChunkFromChunkCoords(x, z)
-            Pollution.addPollution(chunk, Int.MAX_VALUE)
+        if (isHell && !event.world.isRemote) {
+            Pollution.addPollution(event.world, event.chunkX, event.chunkZ, Int.MAX_VALUE)
         }
     }
 }
