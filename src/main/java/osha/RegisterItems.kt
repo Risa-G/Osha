@@ -10,10 +10,8 @@ import osha.config.IConfigurable
 import osha.item.Tongs
 
 object RegisterItems {
-    val tongs = registerItem(Tongs())
-
     val shapedRecipeMap: HashMap<out Item, Array<out Any>> = hashMapOf(
-        tongs to arrayOf(
+        Tongs() to arrayOf(
             "I I",
             "III",
             "RIR",
@@ -22,14 +20,12 @@ object RegisterItems {
         )
     )
 
-    private fun registerItem(item: Item): Item {
-        if ((item !is IConfigurable) || item.isEnabled()) {
-            val name = item.unlocalizedName
-            val firstDot = name.lastIndexOf('.')
-            GameRegistry.registerItem(item, name.substring(firstDot + 1))
+    fun register()  {
+        for ((item, _) in shapedRecipeMap) {
+            if ((item !is IConfigurable) || item.isEnabled()) {
+                GameRegistry.registerItem(item, item.unlocalizedName)
+            }
         }
-
-        return item
     }
 
     fun registerRecipes() {

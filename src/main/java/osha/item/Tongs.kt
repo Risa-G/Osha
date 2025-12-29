@@ -21,18 +21,9 @@ import osha.config.IConfigurable
 class Tongs : Item(), IConfigurable {
     init {
         setMaxStackSize(1)
-        setUnlocalizedName(Osha.modid + "." + "tongs")
+        setUnlocalizedName("tongs")
         setCreativeTab(CreativeTabs.tabTools)
-        setTextureName("tongs")
-    }
-
-    @SideOnly(Side.CLIENT)
-    override fun registerIcons(register: IIconRegister?) {
-        itemIcon = register?.registerIcon("osha.tongs")
-    }
-
-    override fun getIconIndex(icon: ItemStack?): IIcon? {
-        return itemIcon
+        setTextureName("${Osha.modid}:${this.unlocalizedName}")
     }
 
     override fun onItemRightClick(itemStackIn: ItemStack, worldIn: World, player: EntityPlayer): ItemStack {
@@ -103,7 +94,6 @@ class Tongs : Item(), IConfigurable {
             return itemStackIn
         }
 
-        // deserialize
         val id = itemStackIn.tagCompound.getInteger("storing")
         val deserializedBlock = Block.getBlockById(id)
         worldIn.setBlock(i2, j2, k2, deserializedBlock, 0, 3)

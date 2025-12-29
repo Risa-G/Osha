@@ -36,6 +36,7 @@ class Osha {
     @Mod.EventHandler
     fun preInit(event: FMLPreInitializationEvent) {
         log().info("Osha pre initializing")
+        RegisterItems.register()
     }
 
     @Mod.EventHandler
