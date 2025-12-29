@@ -43,6 +43,5 @@ dependencies {
     api("com.github.GTNewHorizons:NotEnoughItems:2.8.48-GTNH:dev") //{transitive = false}
 
     api("com.github.GTNewHorizons:Applied-Energistics-2-Unofficial:rv3-beta-772-GTNH:dev")
-
     testImplementation("junit:junit:4.13.2")
 }
